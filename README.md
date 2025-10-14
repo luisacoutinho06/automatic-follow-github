@@ -17,11 +17,12 @@
 ```bash
 git clone https://github.com/yourusername/automatic-follow-github.git
 cd automatic-follow-github
+cd src
 ```
 
 2. Install dependencies:
 ```bash
-pip install -r requirements.txt
+py -m pip install -r requirements.txt
 ```
 
 3. Run the initial setup script to store your GitHub Access Token and username:
