@@ -2,10 +2,16 @@ import json
 import os 
 from pathlib import Path
 from follow_back import follow_back_new
+from colorama import Fore, Style, init
+import pyfiglet
 
-CONFIG_FILE = Path("config.json");
+# Initialize colorama for colored output (works on Windows too)
+init(autoreset=True)
+
+CONFIG_FILE = Path("config.json")
 
 def print_banner():
+    # Your original ASCII art preserved
     banner = r"""
                        .,,uod8B8bou,,.                             
               ..,uod8BBBBBBBBBBBBBBBBRPFT?l!i:.                    
@@ -34,80 +40,88 @@ def print_banner():
           `..::!8888888888888888888888888888888899fT|!^"'          
             `' !!988888888888888888888888899fT|!^"'                
                 `!!8888888888888888899fT|!^"'                      
-                  `!988888888899fT|!^"'                            
+                  `!988888888899fT|!^"'                             
                     `!9899fT|!^"'                                  
     """
 
-    print("\033[1;36m" + banner + "\033[0m")
-    
-    print(f"{'Welcome to the project automatic-follow-github':<55} \033[1;35m| Made By: luisacoutinho06 💻\033[0m\n")
-    
-        
+    # Print the ASCII art in cyan
+    print(Fore.CYAN + banner + Style.RESET_ALL)
+
+    # Add stylized title using pyfiglet
+    title = pyfiglet.figlet_format("automatic-follow-github", font="slant")
+    print(Fore.YELLOW + title + Style.RESET_ALL)
+
+    # Author credit (kept exactly as yours)
+    print(f"{'Welcome to the project automatic-follow-github':<55} {Fore.MAGENTA}| Made By: luisacoutinho06 💻{Style.RESET_ALL}\n")
+
+
 def load_config():
-      if CONFIG_FILE.exists():
-            with open(CONFIG_FILE, "r", encoding="utf-8") as f:
-                  return json.load(f);
-      return {};
+    if CONFIG_FILE.exists():
+        with open(CONFIG_FILE, "r", encoding="utf-8") as f:
+            return json.load(f)
+    return {}
 
 def save_config(cfg):
-      with open(CONFIG_FILE, "w", encoding="utf-8") as f:
-            json.dump(cfg, f, indent=2);
+    with open(CONFIG_FILE, "w", encoding="utf-8") as f:
+        json.dump(cfg, f, indent=2)
 
 def ensure_credentials():
-      cfg = load_config();
-      token = cfg.get("token");
-      username = cfg.get("username");
-      
-      if not token:
-            token = input("Enter your GitHub Personal Access Token: ").strip();
-            cfg["token"] = token;
-      if not username:
-            username = input("Enter your GitHub username: ").strip();
-            cfg["username"] = username;
+    cfg = load_config()
+    token = cfg.get("token")
+    username = cfg.get("username")
 
-      save_config(cfg);
-      return token, username;
+    if not token:
+        token = input(Fore.CYAN + "Enter your GitHub Personal Access Token: " + Style.RESET_ALL).strip()
+        cfg["token"] = token
+    if not username:
+        username = input(Fore.CYAN + "Enter your GitHub username: " + Style.RESET_ALL).strip()
+        cfg["username"] = username
+
+    save_config(cfg)
+    return token, username
 
 def main_menu():
-      token, username = ensure_credentials();
-      
-      while True:
-            print();
-            print("\n=== GitHub Auto Follow CLI ===");
-            print("1) Follow back new followers");
-            print("2) View saved config");
-            print("3) Update token");
-            print("4) Update username");
-            print("5) Exit");
-            choice = input("Choose an option: ").strip();
-            
-            if choice == "1":
-                  follow_back_new(token, username);
-            elif choice == "2":
-                  cfg = load_config();
-                  print(json.dumps({
-                        "username": cfg.get("username"),
-                        "token_present": bool(cfg.get("token"))
-                  }, indent=2));
-            elif choice == "3":
-                  new_token = input("Enter new token: ").strip();
-                  cfg = load_config();
-                  cfg["token"] = new_token;
-                  save_config(cfg);
-                  print("Token updated successfully.");
-            elif choice == "4":
-                  new_username = input("Enter new username: ").strip();
-                  cfg = load_config();
-                  cfg["username"] = new_username;
-                  save_config(cfg);
-                  print("Username updated successfully.");
-            elif choice == "5":
-                  print("Goodbye!");
-                  break
-            else:
-                  print("Invalid option. Try again.");
+    token, username = ensure_credentials()
+
+    while True:
+        print()
+        print(Fore.GREEN + "\n=== GitHub Auto Follow CLI ===" + Style.RESET_ALL)
+        print(Fore.CYAN + "1)" + Style.RESET_ALL + " Follow back new followers")
+        print(Fore.CYAN + "2)" + Style.RESET_ALL + " View saved config")
+        print(Fore.CYAN + "3)" + Style.RESET_ALL + " Update token")
+        print(Fore.CYAN + "4)" + Style.RESET_ALL + " Update username")
+        print(Fore.CYAN + "5)" + Style.RESET_ALL + " Exit")
+
+        choice = input(Fore.YELLOW + "Choose an option: " + Style.RESET_ALL).strip()
+
+        if choice == "1":
+            follow_back_new(token, username)
+        elif choice == "2":
+            cfg = load_config()
+            print(Fore.WHITE + json.dumps({
+                "username": cfg.get("username"),
+                "token_present": bool(cfg.get("token"))
+            }, indent=2) + Style.RESET_ALL)
+        elif choice == "3":
+            new_token = input(Fore.CYAN + "Enter new token: " + Style.RESET_ALL).strip()
+            cfg = load_config()
+            cfg["token"] = new_token
+            save_config(cfg)
+            print(Fore.GREEN + "Token updated successfully." + Style.RESET_ALL)
+        elif choice == "4":
+            new_username = input(Fore.CYAN + "Enter new username: " + Style.RESET_ALL).strip()
+            cfg = load_config()
+            cfg["username"] = new_username
+            save_config(cfg)
+            print(Fore.GREEN + "Username updated successfully." + Style.RESET_ALL)
+        elif choice == "5":
+            print(Fore.MAGENTA + "Goodbye!" + Style.RESET_ALL)
+            break
+        else:
+            print(Fore.RED + "Invalid option. Try again." + Style.RESET_ALL)
+
 
 if __name__ == "__main__":
     os.system("cls" if os.name == "nt" else "clear")
     print_banner()
-    main_menu() 
+    main_menu()
