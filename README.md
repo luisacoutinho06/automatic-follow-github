@@ -4,14 +4,13 @@ I used AI only to improve the layout.
 
 ## Features
 - Follow users automatically who follow you.
+- Unfollow people who don't follow you (will be implemented in the future).
 - Save GitHub Access Token and username to a JSON file for reuse.
-- Fully configurable: you can separate scripts for setup and actions.
 - Simple terminal-based interface.
 
 ## Prerequisites
-- Python 3.8 or higher
+- Python 3
 - GitHub account
-- Internet connection
 
 ## How to get the token
 This is the link to access the token
