@@ -5,13 +5,11 @@ from follow_back import follow_back_new
 from colorama import Fore, Style, init
 import pyfiglet
 
-# Initialize colorama for colored output (works on Windows too)
 init(autoreset=True)
 
 CONFIG_FILE = Path("config.json")
 
 def print_banner():
-    # Your original ASCII art preserved
     banner = r"""
                        .,,uod8B8bou,,.                             
               ..,uod8BBBBBBBBBBBBBBBBRPFT?l!i:.                    
@@ -44,14 +42,11 @@ def print_banner():
                     `!9899fT|!^"'                                  
     """
 
-    # Print the ASCII art in cyan
     print(Fore.CYAN + banner + Style.RESET_ALL)
 
-    # Add stylized title using pyfiglet
     title = pyfiglet.figlet_format("automatic-follow-github", font="slant")
     print(Fore.YELLOW + title + Style.RESET_ALL)
 
-    # Author credit (kept exactly as yours)
     print(f"{'Welcome to the project automatic-follow-github':<55} {Fore.MAGENTA}| Made By: luisacoutinho06 💻{Style.RESET_ALL}\n")
 
 
