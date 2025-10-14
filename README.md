@@ -24,6 +24,11 @@ This is the link to the documentation that explains how to do this
 https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token
 ```
 
+The allowed permissions should look exactly like this:
+<div align="center">
+  <img width="840" height="358" alt="image" src="https://github.com/user-attachments/assets/dd53eb7a-7e56-4b16-b55b-2558d7e37b00" />
+</div>
+
 ## Installation
 1. Clone the repository:
 ```bash
