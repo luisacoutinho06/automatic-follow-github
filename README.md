@@ -1,5 +1,6 @@
 # Automatic GitHub Follower Script
 `Automatic-follow-github` is a Python automation script that allows you to **automatically follow GitHub users** based on specific actions, such as following users who follow you or other selected criteria. It saves your access token locally in a JSON file, so you don’t have to provide it every time.
+I used AI only to improve the layout.
 
 ## Features
 - Follow users automatically who follow you.
@@ -11,6 +12,17 @@
 - Python 3.8 or higher
 - GitHub account
 - Internet connection
+
+## How to get the token
+This is the link to access the token
+```bash
+https://github.com/settings/personal-access-tokens
+```
+
+This is the link to the documentation that explains how to do this
+```bash
+https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token
+```
 
 ## Installation
 1. Clone the repository:
