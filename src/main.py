@@ -2,6 +2,7 @@ import json
 import os 
 from pathlib import Path
 from follow_back import follow_back_new
+from unfollow_nonfollowers import unfollow_nonfollowers
 from colorama import Fore, Style, init
 import pyfiglet
 
@@ -82,34 +83,37 @@ def main_menu():
         print()
         print(Fore.GREEN + "\n=== GitHub Auto Follow CLI ===" + Style.RESET_ALL)
         print(Fore.CYAN + "1)" + Style.RESET_ALL + " Follow back new followers")
-        print(Fore.CYAN + "2)" + Style.RESET_ALL + " View saved config")
-        print(Fore.CYAN + "3)" + Style.RESET_ALL + " Update token")
-        print(Fore.CYAN + "4)" + Style.RESET_ALL + " Update username")
-        print(Fore.CYAN + "5)" + Style.RESET_ALL + " Exit")
+        print(Fore.CYAN + "2)" + Style.RESET_ALL + " Unfollow users who don’t follow back")
+        print(Fore.CYAN + "3)" + Style.RESET_ALL + " View saved config")
+        print(Fore.CYAN + "4)" + Style.RESET_ALL + " Update token")
+        print(Fore.CYAN + "5)" + Style.RESET_ALL + " Update username")
+        print(Fore.CYAN + "6)" + Style.RESET_ALL + " Exit")
 
         choice = input(Fore.YELLOW + "Choose an option: " + Style.RESET_ALL).strip()
 
         if choice == "1":
             follow_back_new(token, username)
         elif choice == "2":
+                unfollow_nonfollowers(token, username)
+        elif choice == "3":
             cfg = load_config()
             print(Fore.WHITE + json.dumps({
                 "username": cfg.get("username"),
                 "token_present": bool(cfg.get("token"))
             }, indent=2) + Style.RESET_ALL)
-        elif choice == "3":
+        elif choice == "4":
             new_token = input(Fore.CYAN + "Enter new token: " + Style.RESET_ALL).strip()
             cfg = load_config()
             cfg["token"] = new_token
             save_config(cfg)
             print(Fore.GREEN + "Token updated successfully." + Style.RESET_ALL)
-        elif choice == "4":
+        elif choice == "5":
             new_username = input(Fore.CYAN + "Enter new username: " + Style.RESET_ALL).strip()
             cfg = load_config()
             cfg["username"] = new_username
             save_config(cfg)
             print(Fore.GREEN + "Username updated successfully." + Style.RESET_ALL)
-        elif choice == "5":
+        elif choice == "6":
             print(Fore.MAGENTA + "Goodbye!" + Style.RESET_ALL)
             break
         else:
