@@ -45,3 +45,8 @@ py -m pip install -r requirements.txt
 ```bash
 python main.py
 ```
+
+## Layout
+<div align="center">
+<img width="626" height="937" alt="image" src="https://github.com/user-attachments/assets/4a3073ad-feaa-423b-9094-b93b188229c7" />
+</div>
