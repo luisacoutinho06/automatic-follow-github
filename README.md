@@ -48,5 +48,5 @@ python main.py
 
 ## Layout
 <div align="center">
-<img width="626" height="937" alt="image" src="https://github.com/user-attachments/assets/4a3073ad-feaa-423b-9094-b93b188229c7" />
+  <img width="607" height="935" alt="image" src="https://github.com/user-attachments/assets/96fc8fb7-252a-43c7-95e4-0dceb6ddd12a" />
 </div>
